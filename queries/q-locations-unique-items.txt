@@ -1,0 +1,15 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX gro: <http://elden-wiki.com/ontology/>
+PREFIX prop: <http://elden-wiki.com/property/>
+#location con unique items
+select ?loc (COUNT(?item) as ?cantUniqueItems) where {
+    ?loc a gro:Location ;
+    	prop:has_unique_items ?item .
+    ?item a gro:Item ;
+    rdfs:label ?label_item .
+} 
+GROUP BY ?loc
+ORDER BY DESC(?cantUniqueItems)
+limit 100

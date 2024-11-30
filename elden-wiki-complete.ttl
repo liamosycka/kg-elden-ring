@@ -1,0 +1,333 @@
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl:	<http://www.w3.org/2002/07/owl#>
+PREFIX wd: <https://www.wikidata.org/wiki/>
+BASE <http://elden-wiki.com/games/>
+PREFIX bosses: <http://elden-wiki.com/bosses/>
+PREFIX npcs: <http://elden-wiki.com/npcs/>
+PREFIX quests: <http://elden-wiki.com/quests/>
+PREFIX locations: <http://elden-wiki.com/locations/>
+PREFIX weapons: <http://elden-wiki.com/loot/weapons>
+PREFIX items: <http://elden-wiki.com/loot/items>
+PREFIX equipment: <http://elden-wiki.com/loot/equipment>
+PREFIX gro: <http://elden-wiki.com/ontology/>
+PREFIX prop: <http://elden-wiki.com/property/>
+
+
+#ontologies
+gro:Boss  rdf:type  owl:Class ;
+          rdfs:label "Boss"@en ;
+          rdfs:comment "A boss is a strong enemy that is usually faced in a final section of a specific location. It usually drops valuable items" .
+
+gro:Location  rdf:type owl:Class ;
+              rdfs:label "Location"@en ;
+              rdfs:comment "Location in the world map" .
+
+gro:Weapon	rdf:type owl:Class ;
+		rdfs:label "Weapon"@en ;
+		rdfs:comment "Weapon that can be used in the right or left arm." .
+
+gro:Sword	rdf:type owl:Class ;
+		rdfs:label "Sword"@en ;
+		rdfs:subClassOf gro:Weapon .
+
+gro:Spear	rdf:type owl:Class ;
+		rdfs:label "Spear"@en ;
+		rdfs:subClassOf gro:Weapon .
+
+gro:Schyte	rdf:type owl:Class ;
+		rdfs:label "Schyte"@en ;
+		rdfs:subClassOf gro:Weapon .
+
+gro:Bow		rdf:type owl:Class ;
+		rdfs:label "Bow"@en ;
+		rdfs:subClassOf gro:Weapon .
+
+gro:Equipment	rdf:type owl:Class ;
+		rdfs:label "Equipment"@en ;
+		rdfs:comment "Equipment that the player can use, like shields, armours, clothes." .
+
+gro:Shield	rdf:type owl:Class ;
+		rdfs:label "Shield"@en ;
+		rdfs:subClassOf gro:Equipment .
+
+gro:NPC		rdf:type owl:Class ;
+		rdfs:label "NPC"@en ;
+		rdfs:comment "Non playable character that provides quests or sell items." .
+
+gro:Merchant	rdf:type owl:Class ;
+		rdfs:label "Merchant"@en ;
+		rdfs:subClassOf gro:NPC .
+
+gro:QuestGiver	rdf:type owl:Class ;
+		rdfs:label "Quest giver"@en ;
+		rdfs:subClassOf gro:NPC .
+
+gro:Quest       rdf:type owl:Class ;
+                rdfs:label "Quest"@en ;
+                rdfs:comment "Quest that gives rewards" .
+
+gro:Item        rdf:type owl:Class ;
+                rdfs:label "Item"@en ;
+                rdfs:comment "Items or consumables in game" .
+		
+#properties
+
+prop:developed_by rdf:type rdf:Property ;
+                  rdfs:label "developed by" .
+prop:price rdf:type rdf:Property ;
+            rdfs:label  "Price in USD" .
+prop:mc_score  rdf:type rdf:Property ;
+                rdfs:label "Metacritics score" .
+prop:link-wd  rdf:type  rdf:Property ;
+              rdfs:label "Link to WikiData page" .
+prop:link-steam rdf:type  rdf:Property ;
+                rdfs:label  "Link to Steam Store page" .
+prop:link-mc  rdf:type  rdf:Property ;
+              rdfs:label  "Link to Metacritic page" .
+prop:has-boss rdf:type rdf:Property ;
+              rdfs:label "Has boss to fight" ;
+              rdfs:range gro:Boss .
+prop:located_in rdf:type rdf:Property ;
+                rdfs:label "Located in place named" .
+prop:has-weakness rdf:type rdf:Property ;
+                  rdfs:label "Has a weakness" .
+
+prop:has-strengths rdf:type rdf:Property ;
+                  rdfs:label "Has strengths" .
+
+prop:fantasy_name rdf:type  rdf:Property ;
+                  rdfs:label "Fantasy name" .
+prop:recommended_level  rdf:type rdf:Property ;
+                        rdfs:label "Recommended level" .
+prop:hp rdf:type rdf:Property ;
+        rdfs:label "Health points" .
+prop:defense  rdf:type rdf:Property ;
+              rdfs:label "Defense points" .
+prop:stance   rdf:type rdf:Property ;
+              rdfs:label "Stance points" .
+prop:souls_dropped  rdf:type rdf:Property ;
+                    rdfs:label "Ammount of souls dropped" .
+prop:sell_items	rdf:type rdf:Property ;
+		rdfs:label "Sell items" .
+prop:dmg	rdf:type rdf:Property ;
+		rdfs:label "Points of damage that deals" .
+prop:blocks_dmg	rdf:type rdf:Property ;
+		rdfs:label "Points of damage that blocks" .
+prop:gives_quest        rdf:type rdf:Property ;
+                        rdfs:label "Offers quest" .
+prop:rewards_weapon      rdf:type rdf:Property ;
+                        rdfs:label "Weapon rewarded" .
+prop:has_unique_items   rdf:type rdf:Property ;
+                        rdfs:label "Has unique items" .
+prop:limited            rdf:type rdf:Property ;
+                        rdfs:label "Item has limited quantity in the game" .
+prop:item_effect        rdf:type rdf:Property ;
+                        rdfs:label "Effect on use" .
+
+
+
+<Elden_Ring>  rdf:type dbo:Video_Game ;
+                prop:price "47.99"^^xsd:double ;
+                prop:mc-score "94"^^xsd:integer ;
+                prop:link-wd wd:Q64826862 ;
+                prop:link-steam <https://store.steampowered.com/app/1245620/ELDEN_RING/> ;
+                prop:link-mc <https://www.metacritic.com/game/elden-ring/?ftag=MCD-06-10aaa1f> ;
+                prop:recent-reviews "Very Positive" ;
+                prop:all-reviews "Very Positive" ;
+                dbo:releaseDate "2022-02-24"^^xsd:date ;
+                dbo:genre dbr:Action_role-playing_game ;
+                rdfs:label "Elden Ring"@en ;
+                prop:developed_by dbr:From_Sofware ;
+                prop:has_boss bosses:boss_01, bosses:boss_02,
+                              bosses:boss_03, bosses:boss_04,
+                              bosses:boss_05, bosses:boss_06 ;
+                prop:has_locations locations:loc_01, locations:loc_02,
+                              locations:loc_03, locations:loc_04,
+                              locations:loc_05, locations:loc_06 .
+
+
+#items
+
+items:item_01   a gro:Item ;
+                rdfs:label "Stonesword Key"@en ; 
+                prop:limited "true"^^xsd:boolean ;
+                prop:item_effect "Use to break one imp statue seal" .
+
+items:item_02   a gro:Item ;
+                rdfs:label "Irinas Letter"@en ; 
+                prop:limited "true"^^xsd:boolean ;
+                prop:item_effect "Letter addressed to the commander of Castle Morne" .
+
+items:item_03   a gro:Item ;
+                rdfs:label "Godskin Prayerbook"@en ; 
+                prop:limited "true"^^xsd:boolean ;
+                prop:item_effect "Given to a cleric to acquire new incantations" .
+
+items:item_04   a gro:Item ;
+                rdfs:label "Academy Glintstone key"@en ; 
+                prop:limited "true"^^xsd:boolean ;
+                prop:item_effect "Key to open the academy's two sealed gates" .        
+
+items:item_05   a gro:Item ;
+                rdfs:label "Greenburst Crystal Tear"@en ; 
+                prop:limited "true"^^xsd:boolean ;
+                prop:item_effect "Temporarily boosts stamina recovery speed in mixed physick." .
+
+items:item_06   a gro:Item ;
+                rdfs:label "Flightless Bird Painting"@en ; 
+                prop:limited "true"^^xsd:boolean ;
+                prop:item_effect "Reminiscence of painting" .      
+
+items:item_07   a gro:Item ;
+                rdfs:label "Seedbed Curse"@en ; 
+                prop:limited "true"^^xsd:boolean ;
+                prop:item_effect "Curse grown on a body defiled by the Dung Eater" .  
+
+items:item_08   a gro:Item ;
+                rdfs:label "Elden Remembrance"@en ; 
+                prop:limited "true"^^xsd:boolean ;
+                prop:item_effect "Take the power of its namesake via Finger Reader" .  
+
+# weapons
+weapons:sword_01 a gro:Sword ;
+                 rdfs:label "Great sword"@en ;
+                 prop:dmg "80"^^xsd:integer .
+
+weapons:sword_02 a gro:Sword ;
+                 rdfs:label "Kingslayer sword"@en ;
+                 prop:dmg "120"^^xsd:integer .
+# end weapons
+# quests 
+quests:quest_01 a gro:Quest ;
+                prop:rewards_weapon weapons:sword_01 .
+
+quests:quest_02 a gro:Quest ;
+                prop:rewards_weapon weapons:sword_02 .
+# end quests
+# locations
+locations:loc_01  a gro:Location ;
+                  rdfs:label "Stormveil Castle"@en ;
+                  prop:recommended_level "30"^^xsd:integer ;
+                  prop:has_unique_items items:item_01, items:items_03 .
+
+locations:loc_02  a gro:Location ;
+                  rdfs:label "Raya Lucaria Academy" ;
+                  prop:recommended_level "50"^^xsd:integer ;
+                  prop:has_unique_items items:item_01, items:item_01, items:items_04 .
+
+
+locations:loc_03  a gro:Location ;
+                  rdfs:label "Caelid" ;
+                  prop:recommended_level "60"^^xsd:integer ;
+                  prop:has_unique_items items:item_05 .
+
+locations:loc_04  a gro:Location ;
+                  rdfs:label "Leyndell, Royal Capital" ;
+                  prop:recommended_level "60"^^xsd:integer ;
+                  prop:has_unique_items items:item_06 .
+
+locations:loc_05  a gro:Location ;
+                  rdfs:label "Elphael, Brace of the Haligtree" ;
+                  prop:recommended_level "110"^^xsd:integer ;
+                  prop:has_unique_items items:item_07 .
+
+locations:loc_06  a gro:Location ;
+                  rdfs:label "Leyndell, Ashen Capital" ;
+                  prop:recommended_level "95"^^xsd:integer ;
+                  prop:has_unique_items items:item_08 .
+
+
+locations:loc_07  a gro:Location ;
+                  rdfs:label "Bridge of Sacrifice" ;
+                  prop:recommended_level "95"^^xsd:integer ;
+                  prop:has_unique_items items:item_01, items:item_01, items:item_01, items:item_02 .
+
+
+# end locations
+
+# bosses
+bosses:boss_01  rdf:type gro:Boss ;
+                rdfs:label "Godrick"@en ;
+                prop:fantasy_name "Godrick the grafted" ;
+                prop:located_in locations:loc_01 ;
+                prop:has_strenghts "Magic", "Fire", "Lightning" ;
+                prop:hp "6080"^^xsd:integer ;
+                prop:defense "105"^^xsd:integer ;
+                prop:stance "105"^^xsd:integer ;
+                prop:souls_dropped "20000"^^xsd:integer ;
+                prop:parryable "false"^^xsd:boolean .
+bosses:boss_02  rdf:type gro:Boss ;
+                rdfs:label "Rennala"@en ;
+                prop:fantasy_name "Rennala, queen of the full moon" ;
+                prop:located_in locations:loc_02 ;
+                prop:has_strenghts "Magic", "Fire", "Lightning" ;
+                prop:has_weakness "Slash" ;
+                prop:hp "3493"^^xsd:integer ;
+                prop:defense "109"^^xsd:integer ;
+                prop:stance "0"^^xsd:integer ;
+                prop:souls_dropped "40000"^^xsd:integer ;
+                prop:parryable "false"^^xsd:boolean .
+bosses:boss_03  rdf:type gro:Boss ;
+                rdfs:label "Starscourge"@en ;
+                prop:fantasy_name "Starscourge radahn" ;
+                prop:located_in locations:loc_03 ;
+                prop:has_strenghts "Holy" ;
+                prop:has_weakness "Pierce" ;
+                prop:hp "9572"^^xsd:integer ;
+                prop:defense "113"^^xsd:integer ;
+                prop:stance "200"^^xsd:integer ;
+                prop:souls_dropped "70000"^^xsd:integer ;
+                prop:parryable "false"^^xsd:boolean .
+bosses:boss_04  rdf:type gro:Boss ;
+                rdfs:label "Morgott"@en ;
+                prop:fantasy_name "Morgott the omen king" ;
+                prop:located_in locations:loc_04 ;
+                prop:has_strenghts "Holy" ;
+                prop:has_weakness "Slash" ;
+                prop:hp "10399"^^xsd:integer ;
+                prop:defense "114"^^xsd:integer ;
+                prop:stance "80"^^xsd:integer ;
+                prop:souls_dropped "120000"^^xsd:integer ;
+                prop:parryable "true"^^xsd:boolean .
+bosses:boss_05  rdf:type gro:Boss ;
+                rdfs:label "Malenia"@en ;
+                prop:fantasy_name "Malenia blade of miquella" ;
+                prop:located_in locations:loc_05 ;
+                prop:has_strenghts "Physical" ;
+                prop:hp "33251"^^xsd:integer ;
+                prop:defense "200"^^xsd:integer ;
+                prop:stance "80"^^xsd:integer ;
+                prop:souls_dropped "480000"^^xsd:integer ;
+                prop:parryable "true"^^xsd:boolean .
+bosses:boss_06  rdf:type gro:Boss ;
+                rdfs:label "Godfrey"@en ;
+                prop:fantasy_name "Godfrey, first elden lord" ;
+                prop:located_in locations:loc_06 ;
+                prop:has_strenghts "Physical" ;
+                prop:hp "21903"^^xsd:integer ;
+                prop:defense "120"^^xsd:integer ;
+                prop:stance "120"^^xsd:integer ;
+                prop:souls_dropped "300000"^^xsd:integer ;
+                prop:parryable "false"^^xsd:boolean .
+
+# end bosses
+
+# npcs
+
+npcs:npc_01 rdf:type gro:QuestGiver ;
+            prop:fantasy_name   "Irina" ;
+            rdfs:label  "Irina" ;
+            prop:located_in locations:loc_07 ;
+            prop:gives_quest quests:quest_01 .
+
+npcs:npc_02 rdf:type gro:QuestGiver ;
+            prop:fantasy_name   "White Mask Varre" ;
+            rdfs:label  "White Mask Varre" ;
+            prop:located_in locations:loc_02 ;
+            prop:gives_quest quests:quest_02 .
+
+# end npcs

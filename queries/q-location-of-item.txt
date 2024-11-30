@@ -1,0 +1,17 @@
+#query para encontrar location que tenga determinado item
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX gro: <http://elden-wiki.com/ontology/>
+PREFIX prop: <http://elden-wiki.com/property/>
+select ?label_loc ?recom_level ?label_item where {
+    ?loc rdfs:label ?label_loc ;
+    	prop:recommended_level ?recom_level ;
+    	prop:has_unique_items ?item .
+    
+    ?item rdfs:label ?label_item .
+    
+    FILTER (?label_item = "Flightless Bird Painting"@en)
+}
+limit 100

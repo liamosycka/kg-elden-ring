@@ -1,0 +1,10 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX gro: <http://elden-wiki.com/ontology/>
+PREFIX prop: <http://elden-wiki.com/property/>
+select ?s (COUNT(?strenght) as ?cantDiffStrengths) where {
+    ?s rdf:type gro:Boss ;
+    	prop:has_strenghts ?strenght .
+} 
+group by ?s
+limit 100

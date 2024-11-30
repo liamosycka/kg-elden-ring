@@ -1,0 +1,141 @@
+@prefix bosses: <http://elden-wiki.com/bosses/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix gro: <http://elden-wiki.com/ontology/> .
+@prefix locations: <http://elden-wiki.com/locations/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prop: <http://elden-wiki.com/property/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wd: <https://www.wikidata.org/wiki/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://elden-wiki.com/games/Elden_Ring> a dbo:Video_Game ;
+    rdfs:label "Elden Ring"@en ;
+    dbo:genre dbr:Action_role-playing_game ;
+    dbo:releaseDate "2022-02-24"^^xsd:date ;
+    prop:all-reviews "Very Positive" ;
+    prop:developed_by dbr:From_Sofware ;
+    prop:has_boss bosses:boss_01,
+        bosses:boss_02,
+        bosses:boss_03,
+        bosses:boss_04,
+        bosses:boss_05,
+        bosses:boss_06 ;
+    prop:has_locations locations:loc_01,
+        locations:loc_02,
+        locations:loc_03,
+        locations:loc_04,
+        locations:loc_05,
+        locations:loc_06 ;
+    prop:link-mc <https://www.metacritic.com/game/elden-ring/?ftag=MCD-06-10aaa1f> ;
+    prop:link-steam <https://store.steampowered.com/app/1245620/ELDEN_RING/> ;
+    prop:link-wd wd:Q64826862 ;
+    prop:mc-score 94 ;
+    prop:price 4.799e+01 ;
+    prop:recent-reviews "Very Positive" .
+
+bosses:boss_01 a gro:Boss ;
+    rdfs:label "Godrick"@en ;
+    prop:defense 105 ;
+    prop:fantasy_name "Godrick the grafted" ;
+    prop:has_strenghts "Fire",
+        "Lightning",
+        "Magic" ;
+    prop:hp 6080 ;
+    prop:located_in locations:loc_01 ;
+    <http://elden-wiki.com/property/parryable:> false ;
+    prop:souls_dropped 20000 ;
+    prop:stance 105 .
+
+bosses:boss_02 a gro:Boss ;
+    rdfs:label "Rennala"@en ;
+    prop:defense 109 ;
+    prop:fantasy_name "Rennala, queen of the full moon" ;
+    prop:has_strenghts "Fire",
+        "Lightning",
+        "Magic" ;
+    prop:has_weakness "Slash" ;
+    prop:hp 3493 ;
+    prop:located_in locations:loc_02 ;
+    <http://elden-wiki.com/property/parryable:> false ;
+    prop:souls_dropped 40000 ;
+    prop:stance 0 .
+
+bosses:boss_03 a gro:Boss ;
+    rdfs:label "Starscourge"@en ;
+    prop:defense 113 ;
+    prop:fantasy_name "Starscourge radahn" ;
+    prop:has_strenghts "Holy" ;
+    prop:has_weakness "Pierce" ;
+    prop:hp 9572 ;
+    prop:located_in locations:loc_03 ;
+    <http://elden-wiki.com/property/parryable:> false ;
+    prop:souls_dropped 70000 ;
+    prop:stance 200 .
+
+bosses:boss_04 a gro:Boss ;
+    rdfs:label "Morgott"@en ;
+    prop:defense 114 ;
+    prop:fantasy_name "Morgott the omen king" ;
+    prop:has_strenghts "Holy" ;
+    prop:has_weakness "Slash" ;
+    prop:hp 10399 ;
+    prop:located_in locations:loc_04 ;
+    <http://elden-wiki.com/property/parryable:> true ;
+    prop:souls_dropped 120000 ;
+    prop:stance 80 .
+
+bosses:boss_05 a gro:Boss ;
+    rdfs:label "Malenia"@en ;
+    prop:defense 200 ;
+    prop:fantasy_name "Malenia blade of miquella" ;
+    prop:has_strenghts "Physical" ;
+    prop:hp 33251 ;
+    prop:located_in locations:loc_05 ;
+    <http://elden-wiki.com/property/parryable:> true ;
+    prop:souls_dropped 480000 ;
+    prop:stance 80 .
+
+bosses:boss_06 a gro:Boss ;
+    rdfs:label "Godfrey"@en ;
+    prop:defense 120 ;
+    prop:fantasy_name "Godfrey, first elden lord" ;
+    prop:has_strenghts "Physical" ;
+    prop:hp 21903 ;
+    prop:located_in locations:loc_06 ;
+    <http://elden-wiki.com/property/parryable:> false ;
+    prop:souls_dropped 300000 ;
+    prop:stance 120 .
+
+locations:loc_01 rdfs:label "Stormveil Castle" ;
+    prop:recommended_level 30 ;
+    rdfs:type gro:Location .
+
+locations:loc_02 rdfs:label "Raya Lucaria Academy" ;
+    prop:recommended_level 50 ;
+    rdfs:type gro:Location .
+
+locations:loc_03 rdfs:label "Caelid" ;
+    prop:recommended_level 60 ;
+    rdfs:type gro:Location .
+
+locations:loc_04 rdfs:label "Leyndell, Royal Capital" ;
+    prop:recommended_level 60 ;
+    rdfs:type gro:Location .
+
+locations:loc_05 rdfs:label "Elphael, Brace of the Haligtree" ;
+    prop:recommended_level 110 ;
+    rdfs:type gro:Location .
+
+locations:loc_06 rdfs:label "Leyndell, Ashen Capital" ;
+    prop:recommended_level 95 ;
+    rdfs:type gro:Location .
+
+gro:Boss a owl:Class ;
+    rdfs:label "Boss"@en ;
+    rdfs:comment "A boss is a strong enemy that is usually faced in a final section of a specific location. It usually drops valuable items" .
+
+gro:Location a owl:Class ;
+    rdfs:label "Location"@en ;
+    rdfs:comment "Location in the world map" .
+

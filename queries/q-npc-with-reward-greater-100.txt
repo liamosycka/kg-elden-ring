@@ -1,0 +1,25 @@
+#query para encontrar un npc que de una quest con recompensa de arma mayor a 100
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX gro: <http://elden-wiki.com/ontology/>
+PREFIX prop: <http://elden-wiki.com/property/>
+select ?name_npc ?label_weapon ?dmg_weapon ?label_loc ?recom_level where {
+    ?s a gro:NPC ;
+    rdfs:label ?label_npc ;
+    prop:gives_quest ?quest ;
+    prop:located_in ?loc ;
+    prop:fantasy_name ?name_npc .
+    
+    ?quest prop:rewards_weapon ?weapon .
+    
+    ?weapon rdfs:label ?label_weapon ;
+    prop:dmg ?dmg_weapon .
+    
+    ?loc rdfs:label ?label_loc ;
+    	prop:recommended_level ?recom_level .
+  
+    FILTER (?dmg_weapon >= 100)
+}
+limit 100

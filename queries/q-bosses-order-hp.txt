@@ -1,0 +1,18 @@
+#query para traer los 2 bosses que se les puede hacer parry, ordenados por vida y almas que #recompensan
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX gro: <http://elden-wiki.com/ontology/>
+PREFIX prop: <http://elden-wiki.com/property/>
+select ?s ?hp ?defense ?stance ?souls where {
+    ?s rdf:type gro:Boss ;
+    	prop:hp ?hp ;
+    	prop:defense ?defense ;
+    	prop:stance ?stance ;
+    	prop:parryable ?parry ;
+    	prop:souls_dropped ?souls .
+    
+    FILTER(?parry = true)
+} 
+ORDER BY DESC(?hp) DESC(?souls)
+limit 2

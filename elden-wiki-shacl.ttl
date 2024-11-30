@@ -1,0 +1,66 @@
+@base           <http://ex.org/> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+BASE <http://elden-wiki.com/games/>
+PREFIX bosses: <http://elden-wiki.com/bosses/>
+PREFIX locations: <http://elden-wiki.com/locations/>
+PREFIX weapons: <http://elden-wiki.com/items/weapons>
+PREFIX equipment: <http://elden-wiki.com/items/equipment>
+PREFIX gro: <http://elden-wiki.com/ontology/>
+PREFIX prop: <http://elden-wiki.com/property/>
+PREFIX s: <http://elden-wiki.com/shapes/>
+
+s:Boss a sh:NodeShape ;
+ sh:targetClass gro:Boss ;
+ sh:property [sh:path prop:has_strenghts ;
+ sh:minCount 1 ;
+ sh:datatype xsd:string ] ;
+ sh:property [sh:path prop:hp ;
+ sh:minCount 1 ;
+ sh:minInclusive 1000; #hp >= 1000
+ sh:datatype xsd:integer] ;
+ sh:property [sh:path prop:souls_dropped ;
+ sh:minCount 1 ;
+ sh:minInclusive 500;
+ sh:datatype xsd:integer] ;
+ sh:property [sh:path prop:fantasy_name ;
+ sh:minCount 1 ;
+ sh:datatype xsd:string] ;
+ sh:property [sh:path prop:located_in ;
+ sh:minCount 1] .
+
+
+s:Location a sh:NodeShape ;
+ sh:targetClass gro:Location ;
+ sh:property [sh:path prop:recommended_level ;
+ sh:minCount 1 ;
+ sh:minInclusive 1;
+ sh:datatype xsd:integer] .
+
+ s:Weapon a sh:NodeShape ;
+ sh:targetClass gro:Weapon ;
+ sh:property [sh:path prop:dmg ;
+ sh:minCount 1 ;
+ sh:minInclusive 1;
+ sh:datatype xsd:integer] .
+
+s:NPC a sh:NodeShape ;
+ sh:targetClass gro:NPC ;
+ sh:property [sh:path prop:fantasy_name ;
+ sh:minCount 1 ;
+ sh:datatype xsd:string] ;
+ sh:property [sh:path prop:located_in ;
+ sh:minCount 1] .
+
+ s:QuestGiver a sh:NodeShape ;
+ sh:targetClass gro:QuestGiver ;
+ sh:property [sh:path prop:gives_quest ;
+ sh:minCount 1] .
+
+ s:Item a sh:NodeShape ;
+ sh:targetClass gro:Item ;
+ sh:property [sh:path prop:item_effect ;
+ sh:minCount 1;
+ sh:datatype xsd:string] .

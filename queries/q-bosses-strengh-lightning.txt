@@ -1,0 +1,12 @@
+#todos los bosses cuya fortaleza sea Lightning, y si tiene una debilidad, que se muestre
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX gro: <http://elden-wiki.com/ontology/>
+PREFIX prop: <http://elden-wiki.com/property/>
+select ?name_boss ?strenght ?weakness where {
+    ?s rdf:type gro:Boss ;
+    	prop:has_strenghts ?strenght ;
+    	prop:fantasy_name ?name_boss .
+    OPTIONAL { ?s prop:has_weakness ?weakness . }
+    FILTER (?strenght = "Lightning")
+} limit 100
